@@ -9,10 +9,10 @@ Just follow the create-react-app instructions to run this application.
 
 Design inspirations
 Explore page
-![Image of the explore page design inspiration](Design inspiration 1.PNG "Explore page")
+![Image of the explore page design inspiration](DesignInspiration1.PNG "Explore page")
 
 Calender Page
-![Image of the explore page design inspiration](Design inspiration 2.PNG "Calender Page")
+![Image of the explore page design inspiration](DesignInspiration2.PNG "Calender Page")
 
 Notification Page
 Still looking for inspiration...
