@@ -20,6 +20,7 @@ import {
   Avatar,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import AvatarGroup from "@material-ui/lab/AvatarGroup";
 
 const useStyles = makeStyles((theme) => ({
   fullPageHeight: {
@@ -107,7 +108,13 @@ function App() {
                 </Button>
               </Grid>
               <Grid item className={classes.footerContent}>
-                <Typography variant="h3">GDG Group</Typography>
+                <AvatarGroup max={4}>
+                  <Avatar>N</Avatar>
+                  <Avatar>W</Avatar>
+                  <Avatar>S</Avatar>
+                  <Avatar>A</Avatar>
+                  <Avatar>E</Avatar>
+                </AvatarGroup>
               </Grid>
             </Grid>
           </Paper>
