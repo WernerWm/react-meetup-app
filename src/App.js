@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
   eventCard: {
     borderRadius: "20px",
   },
-  discoverSection: {
-    paddingLeft: theme.spacing(2),
+  exploreSection: {
+    paddingLeft: theme.spacing(6),
   },
   discoverItems: {
     marginTop: theme.spacing(1),
@@ -121,14 +121,14 @@ function App() {
         </Grid>
       </Grid>
       <Grid container item xs={5} spacing={0}>
-        <Grid container item spacing={0}>
+        <Grid container item spacing={0} className={classes.exploreSection}>
           <Grid item xs={12}>
             <AppBar
               classes={{ root: classes.menu }}
               position="relative"
               color="transparent"
             >
-              <Toolbar>
+              <Toolbar disableGutters>
                 <IconButton
                   edge="start"
                   color="inherit"
@@ -145,7 +145,7 @@ function App() {
               </Toolbar>
             </AppBar>
           </Grid>
-          <Grid item xs={12} className={classes.discoverSection}>
+          <Grid item xs={12}>
             <Typography variant="h4">Discover</Typography>
             <Tabs
               value={value}
