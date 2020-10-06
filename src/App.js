@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "100%",
+    borderRadius: "0 30px 30px 0",
   },
   heading: {
     color: "white",
@@ -57,7 +58,9 @@ const useStyles = makeStyles((theme) => ({
   },
   contentContainer: {
     height: "100%",
-    padding: theme.spacing(3),
+    paddingLeft: theme.spacing(6),
+    paddingBottom: theme.spacing(6),
+    paddingTop: theme.spacing(6),
   },
   footerContent: {
     color: "white",
@@ -125,7 +128,7 @@ function App() {
               className={classes.contentContainer}
             >
               <Grid item className={classes.heading}>
-                <Typography variant="h3">GDG Group</Typography>
+                <Typography variant="h6">GDG Group</Typography>
               </Grid>
               <Grid
                 container
