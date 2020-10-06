@@ -21,6 +21,7 @@ import {
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 
 import MenuIcon from "@material-ui/icons/Menu";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 
 import EventImage from "./A-Galaxy-Event_Bangkok_main_1.jpg";
 import PhotographyImage from "./dariusz-sankowski-mj2NwYH3wBA-unsplash.jpg";
@@ -29,11 +30,13 @@ import LearningImage from "./green-chameleon-s9CC2SKySJM-unsplash.jpg";
 import FitnessImage from "./ibrahim-asad-7s_cg4ZG1Mo-unsplash.jpg";
 import FamilyImage from "./james-besser-df80NBQyziU-unsplash.jpg";
 import CodingImage from "./alexandre-debieve-FO7JIlwjOtU-unsplash.jpg";
-import { orange } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   fullPageHeight: {
     height: "100%",
+  },
+  grow: {
+    flex: "1 1 auto",
   },
   paper: {
     backgroundImage: `url(${EventImage})`,
@@ -70,7 +73,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   menu: {
+    display: "flex",
     boxShadow: "none",
+    paddingRight: theme.spacing(3),
   },
   filterOption: {
     width: "75%",
@@ -171,12 +176,17 @@ function App() {
                 >
                   <MenuIcon />
                 </IconButton>
+                <div className={classes.grow}></div>
                 <Typography>My calendar</Typography>
                 <IconButton>
-                  <Badge></Badge>
+                  <Badge>
+                    <NotificationsIcon />
+                  </Badge>
                   <Typography>Notification</Typography>
                 </IconButton>
-                <Avatar>W</Avatar>
+                <IconButton>
+                  <Avatar>W</Avatar>
+                </IconButton>
               </Toolbar>
             </AppBar>
           </Grid>
