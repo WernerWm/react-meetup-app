@@ -1,5 +1,10 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+import { orange } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -17,13 +22,17 @@ import {
   IconButton,
   Badge,
   Avatar,
+  Link,
+  MobileStepper,
 } from "@material-ui/core";
+
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 
 import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 
-import EventImage from "./A-Galaxy-Event_Bangkok_main_1.jpg";
+import GoogleImage from "./daniel-romero-Z9fW8Nn7D24-unsplash.jpg";
+import IBMImage from "./sam-pak-nwlFMVePZhI-unsplash.jpg";
+import ReactImage from "./ferenc-almasi-L8KQIPCODV8-unsplash.jpg";
 import PhotographyImage from "./dariusz-sankowski-mj2NwYH3wBA-unsplash.jpg";
 import AdventureImage from "./gina-lin-m27OTMegUyA-unsplash.jpg";
 import LearningImage from "./green-chameleon-s9CC2SKySJM-unsplash.jpg";
@@ -39,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     flex: "1 1 auto",
   },
   paper: {
-    backgroundImage: `url(${EventImage})`,
+    backgroundImage: `url(${GoogleImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     height: "100%",
@@ -58,9 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contentContainer: {
     height: "100%",
-    paddingLeft: theme.spacing(6),
-    paddingBottom: theme.spacing(6),
-    paddingTop: theme.spacing(6),
+    padding: "48px 0 48px 48px",
   },
   footerContent: {
     color: "white",
@@ -70,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
   },
   exploreSection: {
-    paddingLeft: theme.spacing(6),
+    padding: "32px 0 0 48px",
   },
   discoverItems: {
     marginTop: theme.spacing(1),
@@ -106,15 +113,58 @@ const useStyles = makeStyles((theme) => ({
   active: {
     backgroundColor: "orange",
   },
+  menuItem: {
+    paddingRight: theme.spacing(2),
+  },
+  dots: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  dot: {
+    margin: "2px 0",
+  },
+  MobileStepperRoot: {
+    background: "none",
+  },
+  content: {
+    width: "90%",
+  },
+  progressDots: {
+    width: "5%",
+  },
+  line: {
+    border: "thick solid white",
+    borderRadius: "4px",
+    height: "50px",
+  },
+  lineContainer: {
+    width: "5%",
+  },
 }));
 
 function App() {
+  const state = {
+    activeStep: 0,
+  };
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const activeStep = state;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleChangeIndex = (activeStep) => {
+    this.setState({
+      activeStep,
+    });
+  };
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: orange,
+    },
+  });
 
   return (
     <Grid container spacing={0} className={classes.fullPageHeight}>
@@ -134,21 +184,51 @@ function App() {
                 container
                 spacing={0}
                 item
-                direction="column"
-                justify="center"
                 className={classes.centerContent}
+                justify="flex-end"
+                alignItems="center"
               >
-                <Typography variant="h2">GDG Group</Typography>
-                <Typography variant="body1" gutterBottom>
-                  Description of the event and some small information
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.joinButtonSize}
+                <Grid item className={classes.content}>
+                  <Typography variant="h2">GDG Group</Typography>
+                  <Typography variant="body1" gutterBottom>
+                    Description of the event and some small information
+                  </Typography>
+                  <ThemeProvider theme={theme}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.joinButtonSize}
+                    >
+                      Join
+                    </Button>
+                  </ThemeProvider>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  className={classes.progressDots}
+                  justify="flex-end"
                 >
-                  Secondary
-                </Button>
+                  <MobileStepper
+                    variant="dots"
+                    activeStep={activeStep}
+                    steps={6}
+                    position="static"
+                    classes={{
+                      root: classes.MobileStepperRoot,
+                      dots: classes.dots,
+                      dot: classes.dot,
+                    }}
+                  />
+                </Grid>
+                <Grid
+                  container
+                  item
+                  justify="center"
+                  className={classes.lineContainer}
+                >
+                  <div className={classes.line}></div>
+                </Grid>
               </Grid>
               <Grid item className={classes.footerContent}>
                 <AvatarGroup max={4}>
@@ -180,13 +260,21 @@ function App() {
                   <MenuIcon />
                 </IconButton>
                 <div className={classes.grow}></div>
-                <Typography>My calendar</Typography>
-                <IconButton>
-                  <Badge>
-                    <NotificationsIcon />
+                <Typography variant="body1" className={classes.menuItem}>
+                  <Link
+                    href="#"
+                    color="textPrimary"
+                    underline="none"
+                    className={classes.menuItem}
+                  >
+                    My calendar
+                  </Link>
+                  <Badge badgeContent={4} color="primary">
+                    <Link href="#" color="textPrimary" underline="none">
+                      Notification
+                    </Link>
                   </Badge>
-                  <Typography>Notification</Typography>
-                </IconButton>
+                </Typography>
                 <IconButton>
                   <Avatar>W</Avatar>
                 </IconButton>
@@ -209,13 +297,13 @@ function App() {
             </Grid>
             <Grid container item spacing={3}>
               <Grid item xs={4}>
-                <Card className={classes.eventCard}>
+                <Card raised className={classes.eventCard}>
                   <CardActionArea>
                     <CardMedia
                       component="img"
                       alt="GDG Group"
-                      height="140"
-                      image={EventImage}
+                      height="250"
+                      image={GoogleImage}
                     />
                     <CardContent>
                       <Typography>GDG Group</Typography>
@@ -230,8 +318,8 @@ function App() {
                     <CardMedia
                       component="img"
                       alt="GDG Group"
-                      height="140"
-                      image={EventImage}
+                      height="250"
+                      image={IBMImage}
                     />
                     <CardContent>
                       <Typography>GDG Group</Typography>
@@ -246,8 +334,8 @@ function App() {
                     <CardMedia
                       component="img"
                       alt="GDG Group"
-                      height="140"
-                      image={EventImage}
+                      height="250"
+                      image={ReactImage}
                     />
                     <CardContent>
                       <Typography>GDG Group</Typography>
@@ -259,7 +347,7 @@ function App() {
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={4}>
+            <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Typography variant="h4">Type of Events</Typography>
               </Grid>
