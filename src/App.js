@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import "./App.css";
+import "./carousal.css";
 import {
   Card,
   CardActionArea,
@@ -25,6 +26,8 @@ import {
   Link,
   MobileStepper,
 } from "@material-ui/core";
+// import Carousal from "./carousal";
+import Carousel from "react-elastic-carousel";
 
 import AvatarGroup from "@material-ui/lab/AvatarGroup";
 
@@ -72,9 +75,6 @@ const useStyles = makeStyles((theme) => ({
   footerContent: {
     color: "white",
     paddingLeft: theme.spacing(8),
-  },
-  eventCard: {
-    borderRadius: "20px",
   },
   exploreSection: {
     padding: "32px 0 0 48px",
@@ -143,21 +143,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  const state = {
-    activeStep: 0,
-  };
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const activeStep = state;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleChangeIndex = (activeStep) => {
-    this.setState({
-      activeStep,
-    });
   };
 
   const theme = createMuiTheme({
@@ -211,7 +201,6 @@ function App() {
                 >
                   <MobileStepper
                     variant="dots"
-                    activeStep={activeStep}
                     steps={6}
                     position="static"
                     classes={{
@@ -295,9 +284,15 @@ function App() {
                 <Tab label="New"></Tab>
               </Tabs>
             </Grid>
-            <Grid container item spacing={3}>
-              <Grid item xs={4}>
-                <Card raised className={classes.eventCard}>
+            <Grid container item>
+              <Carousel
+                showArrows={false}
+                pagination={false}
+                itemsToScroll={1}
+                itemsToShow={3}
+                itemPadding={[8, 16, 8, 0]}
+              >
+                <Card raised className="event-card">
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -311,9 +306,7 @@ function App() {
                     </CardContent>
                   </CardActionArea>
                 </Card>
-              </Grid>
-              <Grid item xs={4}>
-                <Card className={classes.eventCard}>
+                <Card className="event-card">
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -327,9 +320,7 @@ function App() {
                     </CardContent>
                   </CardActionArea>
                 </Card>
-              </Grid>
-              <Grid item xs={4}>
-                <Card className={classes.eventCard}>
+                <Card className="event-card">
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -343,7 +334,77 @@ function App() {
                     </CardContent>
                   </CardActionArea>
                 </Card>
-              </Grid>
+                <Card className="event-card">
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="GDG Group"
+                      height="250"
+                      image={ReactImage}
+                    />
+                    <CardContent>
+                      <Typography>GDG Group</Typography>
+                      <Typography>Coding and development</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card className="event-card">
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="GDG Group"
+                      height="250"
+                      image={ReactImage}
+                    />
+                    <CardContent>
+                      <Typography>GDG Group</Typography>
+                      <Typography>Coding and development</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card className="event-card">
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="GDG Group"
+                      height="250"
+                      image={ReactImage}
+                    />
+                    <CardContent>
+                      <Typography>GDG Group</Typography>
+                      <Typography>Coding and development</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card className="event-card">
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="GDG Group"
+                      height="250"
+                      image={ReactImage}
+                    />
+                    <CardContent>
+                      <Typography>GDG Group</Typography>
+                      <Typography>Coding and development</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Card className="event-card">
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="GDG Group"
+                      height="250"
+                      image={ReactImage}
+                    />
+                    <CardContent>
+                      <Typography>GDG Group</Typography>
+                      <Typography>Coding and development</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Carousel>
             </Grid>
           </Grid>
           <Grid item xs={12}>
@@ -351,8 +412,14 @@ function App() {
               <Grid item xs={12}>
                 <Typography variant="h4">Type of Events</Typography>
               </Grid>
-              <Grid container item xs={12} justify="space-between" spacing={2}>
-                <Grid item xs={2}>
+              <Grid item xs={12}>
+                <Carousel
+                  showArrows={false}
+                  pagination={false}
+                  itemsToScroll={1}
+                  itemsToShow={6}
+                  itemPadding={[8, 16, 8, 0]}
+                >
                   <Paper className={[classes.active, classes.filterOption]}>
                     <div className={classes.filterImage}>
                       <img
@@ -365,8 +432,6 @@ function App() {
                       Photography
                     </Typography>
                   </Paper>
-                </Grid>
-                <Grid item xs={2}>
                   <Paper className={classes.filterOption}>
                     <div className={classes.filterImage}>
                       <img
@@ -379,8 +444,6 @@ function App() {
                       Adventure
                     </Typography>
                   </Paper>
-                </Grid>
-                <Grid item xs={2}>
                   <Paper className={classes.filterOption}>
                     <div className={classes.filterImage}>
                       <img
@@ -393,8 +456,6 @@ function App() {
                       Learning
                     </Typography>
                   </Paper>
-                </Grid>
-                <Grid item xs={2}>
                   <Paper className={classes.filterOption}>
                     <div className={classes.filterImage}>
                       <img
@@ -407,8 +468,6 @@ function App() {
                       Fitness
                     </Typography>
                   </Paper>
-                </Grid>
-                <Grid item xs={2}>
                   <Paper className={classes.filterOption}>
                     <div className={classes.filterImage}>
                       <img
@@ -421,8 +480,6 @@ function App() {
                       Family
                     </Typography>
                   </Paper>
-                </Grid>
-                <Grid item xs={2}>
                   <Paper className={classes.filterOption}>
                     <div className={classes.filterImage}>
                       <img
@@ -435,7 +492,7 @@ function App() {
                       Coding
                     </Typography>
                   </Paper>
-                </Grid>
+                </Carousel>
               </Grid>
             </Grid>
           </Grid>
