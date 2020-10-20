@@ -2,6 +2,14 @@
   border-radius: 20px !important;
 }
 
-.rec-slider-container {
-  margin: 0 !important;
+#big-event-card{ 
+  height: 100%;
+}
+
+.discover-swiper-container {
+  height: 23rem;
+}
+
+.swiper-pagination {
+  padding-bottom: 48px
 }
